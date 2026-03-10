@@ -1,194 +1,291 @@
+/* ================= GOOGLE FONTS ================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600&display=swap');
+
+/* ================= VARIABLES ================= */
 :root {
-  --bg-main: #000;
-  --bg-secondary: #111;
-  --card-bg: #1e1e1e;
-  --card-hover: #2a2a2a;
-  --text-primary: #fff;
-  --text-secondary: #aaa;
-  --tag-bg: #333;
-  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --bg-main: #0f0f0f;
+  --bg-header: rgba(25,25,25,0.75);
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #242424;
+
+  --text-primary: #ffffff;
+  --text-secondary: #b5b5b5;
+
+  --border-soft: #2f2f2f;
+
+  --overlay-bg: rgba(0,0,0,0.75);
+
+  --app-padding: 40px 30px;
+
+  --font-main: "Inter", sans-serif;
+  --font-header: "Poppins", sans-serif;
 }
 
 /* ================= BASE ================= */
-
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
-  background: var(--bg-main);
+  font-family: var(--font-main);
   color: var(--text-primary);
+
+  background:
+    radial-gradient(circle at top left, #1c1c1c, transparent 40%),
+    radial-gradient(circle at bottom right, #1a1a1a, transparent 40%),
+    #0f0f0f;
 }
 
-.app-container {
+/* ================= APP CONTAINER ================= */
+.app {
   max-width: 1300px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
+  padding: var(--app-padding);
+  box-sizing: border-box;
 }
 
 /* ================= HEADER ================= */
-
 .app-header {
-  background: var(--bg-secondary);
-  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+
+  background: var(--bg-header);
+  backdrop-filter: blur(10px);
+
+  border-radius: 14px;
+  padding: 20px 30px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #222;
+  flex-wrap: wrap;
+
+  margin-bottom: 30px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  z-index: 100;
 }
 
 .app-header h1 {
-  font-size: 1.8rem;
+  font-family: var(--font-header);
+  font-size: 28px;
+  color: var(--text-primary);
   letter-spacing: 1px;
+  margin: 0;
 }
 
-/* ================= FILTERS ================= */
-
-.filters {
+/* ================= CONTROLS ================= */
+.controls {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-.filters input,
-.filters select {
-  padding: 0.6rem 1rem;
+/* ================= FILTER INPUTS ================= */
+.controls input,
+.controls select {
   background: #222;
-  border: 1px solid #333;
+  border: 1px solid var(--border-soft);
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
   color: white;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 14px;
+
+  transition: all 0.2s ease;
 }
 
-/* Remove old single input rule since filters now control it */
-.app-header input {
-  width: 280px;
+.controls input::placeholder {
+  color: #aaa;
+}
+
+.controls input:focus,
+.controls select:focus {
+  outline: none;
+  border-color: #555;
+  box-shadow: 0 0 6px rgba(255,255,255,0.15);
 }
 
 /* ================= GRID ================= */
-
 .grid-container {
   display: grid;
-  gap: 1.8rem;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+
+  margin-top: 20px;
+  padding-bottom: 30px;
 }
 
-/* ================= CARD ================= */
-
+/* ================= PODCAST CARD ================= */
 .card {
-  background: var(--card-bg);
-  border-radius: 12px;
+  background: var(--bg-card);
+  border-radius: 14px;
+
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.25s ease, background 0.25s ease;
+
+  transition: all 0.25s ease;
+
+  padding: 8px;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 
 .card:hover {
-  transform: scale(1.04);
-  background: var(--card-hover);
+  transform: translateY(-6px);
+  background: var(--bg-card-hover);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.7);
 }
 
 .card img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   object-fit: cover;
+
+  border-radius: 10px;
+  margin-bottom: 8px;
 }
 
 .card h3 {
-  margin: 1rem 1rem 0.3rem;
+  margin: 8px 8px 4px;
+  font-family: var(--font-header);
   font-size: 1.1rem;
+  color: var(--text-primary);
 }
 
 .card p {
-  margin: 0 1rem 0.5rem;
+  margin: 0 8px 8px;
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
+/* ================= TAGS ================= */
 .tags {
-  margin: 0.5rem 1rem;
+  margin: 8px;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 6px;
 }
 
 .tag {
-  background: var(--tag-bg);
-  color: var(--text-secondary);
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
+  background: #333;
+  color: white;
+
+  padding: 4px 8px;
+
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .updated-text {
-  margin: 0 1rem 1rem;
+  margin: 0 8px 10px;
   font-size: 0.75rem;
   color: var(--text-secondary);
 }
 
-/* ================= MODAL ================= */
+/* ================= PAGINATION ================= */
+.pagination {
+  margin-top: 40px;
 
-.modal {
-  position: fixed;
-  inset: 0;
-  background: var(--overlay-bg);
-  backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  gap: 10px;
+}
+
+.pagination button {
+  background: #222;
+
+  border: 1px solid var(--border-soft);
+
+  color: white;
+
+  padding: 8px 14px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover {
+  background: #333;
+}
+
+.pagination button.active {
+  background: #444;
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================= MODAL ================= */
+.modal {
+  position: fixed;
+  inset: 0;
+
+  background: var(--overlay-bg);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 2rem;
   z-index: 100;
 }
 
 .modal-content {
-  background: var(--bg-secondary);
-  border-radius: 14px;
+  background: var(--bg-card);
+
+  border-radius: 16px;
+
   max-width: 900px;
   width: 100%;
+
   padding: 2rem;
+
   max-height: 90vh;
   overflow-y: auto;
+
   position: relative;
 }
 
 .modal-content img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 1rem 0;
 }
 
 .close-btn {
   position: absolute;
+
   top: 1rem;
   right: 1rem;
+
   background: transparent;
   border: none;
+
   font-size: 1.8rem;
+
   color: white;
+
   cursor: pointer;
+
   transition: transform 0.3s ease;
 }
 
 .close-btn:hover {
   transform: scale(1.2);
-  color: red;
-}
-
-/* ================= SEASONS ================= */
-
-.season-list {
-  padding: 0;
-}
-
-.season-item {
-  list-style: none;
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border: 1px solid #222;
 }
 
 /* ================= STATES ================= */
-
 .loading-state,
 .error-state,
 .empty-state {
@@ -199,20 +296,33 @@ body {
 
 /* ================= RESPONSIVE ================= */
 
+@media (max-width: 1024px) {
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
 @media (max-width: 768px) {
+
   .app-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
   }
 
-  .filters {
+  .controls {
+    width: 100%;
     flex-direction: column;
+  }
+
+  .controls input,
+  .controls select {
     width: 100%;
   }
 
-  .filters input,
-  .filters select {
-    width: 100%;
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
   }
+
 }

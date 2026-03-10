@@ -1,4 +1,3 @@
-Pagination.jsx
 import React from "react";
 import PodcastCard from "./PodcastCard";
 import LoadingState from "./LoadingState";
