@@ -15,7 +15,7 @@
 
   --overlay-bg: rgba(0,0,0,0.75);
 
-  --app-padding: 40px 30px;
+  --app-padding: 60px 40px;
 
   --font-main: "Inter", sans-serif;
   --font-header: "Poppins", sans-serif;
@@ -58,7 +58,9 @@ body {
   align-items: center;
   flex-wrap: wrap;
 
-  margin-bottom: 30px;
+  gap: 20px;
+
+  margin-bottom: 35px;
 
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   z-index: 100;
@@ -103,13 +105,15 @@ body {
 .controls select:focus {
   outline: none;
   border-color: #555;
-  box-shadow: 0 0 6px rgba(255,255,255,0.15);
+  box-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 
 /* ================= GRID ================= */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
   gap: 25px;
 
   margin-top: 20px;
@@ -204,7 +208,7 @@ body {
 
   padding: 8px 14px;
 
-  border-radius: 6px;
+  border-radius: 8px;
 
   cursor: pointer;
 
@@ -217,7 +221,6 @@ body {
 
 .pagination button.active {
   background: #444;
-  color: white;
 }
 
 .pagination button:disabled {

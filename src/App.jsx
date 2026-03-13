@@ -2,9 +2,6 @@ import { useEffect, useState, useMemo } from "react";
 import { fetchPodcasts } from "./api/fetchPodcasts";
 import PodcastGrid from "./components/PodcastGrid";
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import SortSelect from "./components/SortSelect";
-import GenreFilter from "./components/GenreFilter";
 import Pagination from "./components/Pagination";
 
 function App() {
@@ -30,6 +27,7 @@ function App() {
         setLoading(false);
       }
     }
+
     loadPodcasts();
   }, []);
 
@@ -48,16 +46,24 @@ function App() {
     }
 
     if (selectedGenre !== "All") {
-      result = result.filter((p) => p.genreNames?.includes(selectedGenre));
+      result = result.filter((p) =>
+        p.genreNames?.includes(selectedGenre)
+      );
     }
 
     if (sortOption === "latest") {
       result.sort((a, b) => new Date(b.updated) - new Date(a.updated));
-    } else if (sortOption === "oldest") {
+    }
+
+    if (sortOption === "oldest") {
       result.sort((a, b) => new Date(a.updated) - new Date(b.updated));
-    } else if (sortOption === "az") {
+    }
+
+    if (sortOption === "az") {
       result.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sortOption === "za") {
+    }
+
+    if (sortOption === "za") {
       result.sort((a, b) => b.title.localeCompare(a.title));
     }
 
@@ -76,18 +82,15 @@ function App() {
 
   return (
     <div className="app">
-
-      <Header />
-
-      <div className="filters">
-        <SearchBar value={searchTerm} onChange={setSearchTerm} />
-        <GenreFilter
-          genres={allGenres}
-          value={selectedGenre}
-          onChange={setSelectedGenre}
-        />
-        <SortSelect value={sortOption} onChange={setSortOption} />
-      </div>
+      <Header
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedGenre={selectedGenre}
+        setSelectedGenre={setSelectedGenre}
+        sortOption={sortOption}
+        setSortOption={setSortOption}
+        genres={allGenres}
+      />
 
       <PodcastGrid podcasts={paginatedPodcasts} />
 
@@ -96,7 +99,6 @@ function App() {
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
-
     </div>
   );
 }

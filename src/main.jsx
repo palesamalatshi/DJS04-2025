@@ -1,10 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './styles.css'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { PodcastProvider } from "./context/PodcastContext";
+import "./styles.css";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+import { fetchPodcasts } from "./api/fetchPodcasts";
+
+async function startApp() {
+  const podcasts = await fetchPodcasts();
+
+  ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+      <PodcastProvider podcasts={podcasts}>
+        <App />
+      </PodcastProvider>
+    </React.StrictMode>
+  );
+}
+
+startApp();
