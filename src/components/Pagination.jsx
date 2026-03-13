@@ -1,21 +1,29 @@
-import React from "react"
+import React, { useContext } from "react";
+import { PodcastContext } from "../context/PodcastContext";
 
-export default function Pagination({ currentPage, totalPages, onPageChange }) {
+export default function Pagination() {
+
+  const { page, setPage, totalPages } = useContext(PodcastContext);
+
   return (
     <div className="pagination">
+
       <button
-        disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
+        disabled={page === 1}
+        onClick={() => setPage(page - 1)}
       >
         Previous
       </button>
-      <span>{currentPage} / {totalPages}</span>
+
+      <span>{page} / {totalPages}</span>
+
       <button
-        disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
+        disabled={page === totalPages}
+        onClick={() => setPage(page + 1)}
       >
         Next
       </button>
+
     </div>
-  )
-}
+  );
+}s

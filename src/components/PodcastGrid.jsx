@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import PodcastCard from "./PodcastCard";
 import LoadingState from "./LoadingState";
 import ErrorState from "./ErrorState";
 import EmptyState from "./EmptyState";
+import { PodcastContext } from "../context/PodcastContext";
 
-/**
- * Grid of podcast previews
- */
-const PodcastGrid = ({ podcasts, loading, error, onCardClick }) => {
+const PodcastGrid = () => {
+
+  const { podcasts, loading, error } = useContext(PodcastContext);
+
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={error} />;
   if (!podcasts || podcasts.length === 0) return <EmptyState />;
@@ -15,7 +16,7 @@ const PodcastGrid = ({ podcasts, loading, error, onCardClick }) => {
   return (
     <div className="grid-container">
       {podcasts.map((p) => (
-        <PodcastCard key={p.id} podcast={p} onClick={onCardClick} />
+        <PodcastCard key={p.id} podcast={p} />
       ))}
     </div>
   );
