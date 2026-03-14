@@ -143,11 +143,9 @@ body {
 
 .card img {
   width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-
-  border-radius: 10px;
-  margin-bottom: 8px;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
 }
 
 .card h3 {
